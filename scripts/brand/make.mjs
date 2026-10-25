@@ -65,7 +65,7 @@ function ogHtml() {
   .role{font-size:28px;color:${C.mute};margin-top:14px}
   .rule{position:absolute;left:72px;right:72px;top:300px;border-top:2px solid ${C.ink}}
   .k{position:absolute;left:72px;top:318px;font-weight:600;font-size:18px;letter-spacing:.14em;text-transform:uppercase;color:${C.mute}}
-  .row{position:absolute;left:72px;right:72px;top:362px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .row{position:absolute;left:72px;right:72px;top:362px;display:grid;grid-template-columns:repeat(${projects.length},1fr);gap:14px}
   .row img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:6px;border:1px solid ${C.rule}}
   .url{position:absolute;left:72px;bottom:52px;font-size:24px;color:${C.acc};font-weight:600}
   </style></head><body>
@@ -85,8 +85,14 @@ try {
     for (const p of projects) {
       const page = await browser.newPage();
       await page.setViewport({ width: 1280, height: 800, deviceScaleFactor: 0.6 });
-      await page.goto(p.url, { waitUntil: 'networkidle2', timeout: 60000 });
-      await new Promise((r) => setTimeout(r, 2500));
+      if (p.shot === 'og') {
+        // Narrow pages (like a game cabinet) read better as their own share image.
+        const og = await (await browser.newPage()).goto(p.url).then((r) => r.text()).then((h) => h.match(/property="og:image" content="([^"]+)"/)[1]);
+        await page.setContent(`<style>*{margin:0}img{width:1280px;height:800px;object-fit:cover}</style><img src="${og}">`, { waitUntil: 'networkidle0' });
+      } else {
+        await page.goto(p.url, { waitUntil: 'networkidle2', timeout: 60000 });
+        await new Promise((r) => setTimeout(r, 2500));
+      }
       await page.screenshot({ path: path.join(pub, 'projects', `${p.key}.jpg`), type: 'jpeg', quality: 82 });
       await page.close();
       console.log(`wrote public/projects/${p.key}.jpg`);
