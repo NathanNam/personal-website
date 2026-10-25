@@ -2,7 +2,7 @@
 
 My personal website: a short profile and the side projects I build and keep running.
 
-**Live:** https://nathannam.vercel.app
+**Live:** https://nathannam.com
 
 ## How it works
 
