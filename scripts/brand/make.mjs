@@ -88,7 +88,8 @@ try {
       if (p.shot === 'og') {
         // Narrow pages (like a game cabinet) read better as their own share image.
         const og = await (await browser.newPage()).goto(p.url).then((r) => r.text()).then((h) => h.match(/property="og:image" content="([^"]+)"/)[1]);
-        await page.setContent(`<style>*{margin:0}img{width:1280px;height:800px;object-fit:cover}</style><img src="${og}">`, { waitUntil: 'networkidle0' });
+        // Fit the whole image (no cropped text) over a blurred copy of itself.
+        await page.setContent(`<style>*{margin:0}body{width:1280px;height:800px;overflow:hidden;position:relative}.bg{position:absolute;inset:-40px;width:1360px;height:880px;object-fit:cover;filter:blur(28px) brightness(.9)}.fg{position:absolute;inset:0;width:1280px;height:800px;object-fit:contain}</style><img class=bg src="${og}"><img class=fg src="${og}">`, { waitUntil: 'networkidle0' });
       } else {
         await page.goto(p.url, { waitUntil: 'networkidle2', timeout: 60000 });
         await new Promise((r) => setTimeout(r, 2500));
