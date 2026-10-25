@@ -1,0 +1,42 @@
+[
+  {
+    "key": "aiprovedwhat",
+    "name": "AI Proved What?",
+    "tag": "Math · Video series",
+    "url": "https://aiprovedwhat.com",
+    "repo": "NathanNam/aiprovedwhat",
+    "description": "Short animated explainers of mathematics that AI systems claim to have proved, with a running record of how far each proof has been checked."
+  },
+  {
+    "key": "shotatlas",
+    "name": "The Shot Atlas",
+    "tag": "Basketball · Data",
+    "url": "https://theshotatlas.com",
+    "repo": "NathanNam/nba-shot-atlas",
+    "description": "Where NBA players and teams shoot from, and how well, season by season since 2013-14."
+  },
+  {
+    "key": "caltrain",
+    "name": "Caltrain Commuter",
+    "tag": "Transit · Live data",
+    "url": "https://caltrain-commuter.vercel.app",
+    "repo": "NathanNam/caltrain-commuter",
+    "description": "Your next Caltrain at a glance: live departures, the whole line as an 1830-style hex board, and the full timetable."
+  },
+  {
+    "key": "starters",
+    "name": "Probable Starters",
+    "tag": "Baseball · Daily",
+    "url": "https://mlb-probable-starters.vercel.app",
+    "repo": "NathanNam/mlb-probable-starters",
+    "description": "Every MLB game's probable starters as a daily set of vintage baseball cards, with a rotation watch for your ballpark."
+  },
+  {
+    "key": "bgotw",
+    "name": "Board Game of the Week",
+    "tag": "Board games · Weekly",
+    "url": "https://boardgameweek.vercel.app",
+    "repo": "NathanNam/boardgameweek",
+    "description": "One board game a week, tied to the news: a family game, a solo pick, how to learn it, and talking points for the table."
+  }
+]
