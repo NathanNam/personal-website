@@ -55,5 +55,14 @@
     "url": "https://techterminal.vercel.app",
     "repo": "NathanNam/tech-stock-tracker",
     "description": "Big tech stocks on a trading-terminal board: live quotes, sparklines and 1D–1Y charts, with a command line and function keys."
+  },
+  {
+    "key": "aautryouts",
+    "name": "Bay Area AAU Tryouts",
+    "tag": "Basketball · Hand-checked",
+    "url": "https://aau-basketball-tryouts.vercel.app",
+    "repo": "NathanNam/aau-basketball-tryouts",
+    "description": "High school AAU basketball tryouts around the Bay Area in one place, checked by hand every week during tryout season.",
+    "shot": "og"
   }
 ]
