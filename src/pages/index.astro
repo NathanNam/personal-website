@@ -1,0 +1,155 @@
+---
+import '@fontsource/newsreader/400.css';
+import '@fontsource/newsreader/500.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import Analytics from '@vercel/analytics/astro';
+import projects from '../data/projects.json';
+
+const title = 'Nathan Nam';
+const description =
+  'Principal Product Manager at Archetype AI in San Mateo. Side projects about math, basketball, baseball, trains and board games.';
+const site = Astro.site!;
+const abs = (p: string) => new URL(p, site).href;
+const host = (u: string) => new URL(u).host;
+
+const links = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/nathannam' },
+  { label: 'GitHub', href: 'https://github.com/NathanNam' },
+  { label: 'X', href: 'https://x.com/nathannam' },
+  { label: 'Agent skills (work)', href: 'https://github.com/archetypeai/agent-skills' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={site.href} />
+    <meta name="theme-color" content="#f7f4ee" />
+
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={site.href} />
+    <meta property="og:image" content={abs('/og.png')} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Nathan Nam: Principal Product Manager at Archetype AI, and five side projects" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@nathannam" />
+    <meta name="twitter:creator" content="@nathannam" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={abs('/og.png')} />
+    <meta name="twitter:image:alt" content="Nathan Nam: Principal Product Manager at Archetype AI, and five side projects" />
+  </head>
+  <body>
+    <main class="w">
+      <header>
+        <img class="ph" src="/headshot.jpg" width="112" height="112" alt="Nathan Nam" />
+        <div>
+          <h1>Nathan Nam</h1>
+          <p class="role">Principal Product Manager, Archetype AI · San Francisco, CA</p>
+        </div>
+      </header>
+
+      <div class="bio">
+        <p>
+          I'm a Principal Product Manager at <a href="https://www.archetypeai.io">Archetype AI</a> in San Mateo,
+          responsible for the <a href="https://www.archetypeai.io/platform">Archetype AI Platform</a>,
+          built on <a href="https://www.archetypeai.io/newton">Newton</a>, our foundation model that helps customers
+          understand physical-world data in real time.
+        </p>
+        <p>
+          Before that I helped scale Observe (acquired by Snowflake), Confluent (IPO) and MuleSoft (IPO, acquired by
+          Salesforce), after starting out at Samsung Electronics.
+        </p>
+        <p>Outside work I build small sites about things I love: math, basketball, baseball, trains and board games.</p>
+      </div>
+
+      <nav class="links" aria-label="Elsewhere">
+        {links.map((l) => <a href={l.href} rel="me">{l.label}</a>)}
+      </nav>
+      <p class="edu">UC Berkeley MIDS · Tuck MBA · Sogang University B.E. Computer Science</p>
+
+      <section aria-labelledby="projects">
+        <h2 id="projects">Side projects</h2>
+        {
+          projects.map((p) => (
+            <article class="p">
+              <a href={p.url} tabindex="-1" aria-hidden="true">
+                <img src={`/projects/${p.key}.jpg`} width="768" height="480" alt="" loading="lazy" decoding="async" />
+              </a>
+              <div>
+                <div class="t">{p.tag}</div>
+                <h3><a href={p.url}>{p.name}</a></h3>
+                <p>{p.description}</p>
+                <div class="l">
+                  <a href={p.url}>{host(p.url)}</a>
+                  <a href={`https://github.com/${p.repo}`}>Code</a>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </section>
+
+      <footer>Built with Astro. Every project here is open source.</footer>
+    </main>
+    <Analytics />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #f7f4ee;
+    --ink: #1d1b18;
+    --mute: #6b665d;
+    --rule: #ddd6c9;
+    --acc: #b4442b;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 Inter, system-ui, sans-serif; }
+  a { color: var(--acc); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  .w { max-width: 760px; margin: 0 auto; padding: 72px 24px; }
+  header { display: flex; gap: 28px; align-items: center; }
+  .ph { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; flex: none; background: #d9cfbf; }
+  h1 { font: 500 52px/1.05 Newsreader, Georgia, serif; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .role { color: var(--mute); margin: 0; }
+  .bio { font: 400 21px/1.55 Newsreader, Georgia, serif; margin: 36px 0 8px; }
+  .bio p { margin: 0 0 14px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 15px; font-weight: 500; margin-top: 18px; }
+  .edu { font-size: 14px; color: var(--mute); margin: 22px 0 0; }
+  h2 {
+    font: 600 13px Inter, system-ui, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+    border-top: 1px solid var(--ink); padding-top: 14px; margin: 72px 0 8px;
+  }
+  .p { display: grid; grid-template-columns: 240px 1fr; gap: 28px; padding: 28px 0; border-bottom: 1px solid var(--rule); align-items: start; }
+  .p img { width: 100%; height: auto; aspect-ratio: 16 / 10; border-radius: 6px; border: 1px solid var(--rule); display: block; }
+  .p h3 { font: 500 28px/1.15 Newsreader, Georgia, serif; margin: 0 0 6px; }
+  .p h3 a { color: var(--ink); text-decoration: none; }
+  .p h3 a:hover { color: var(--acc); }
+  .t { font-size: 13px; color: var(--mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .p p { margin: 8px 0 10px; color: #3b3833; }
+  .l { font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  footer { margin-top: 56px; font-size: 14px; color: var(--mute); }
+  @media (max-width: 640px) {
+    .w { padding: 48px 16px; }
+    header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    h1 { font-size: 40px; }
+    .bio { font-size: 19px; }
+    .p { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
