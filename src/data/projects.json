@@ -47,5 +47,13 @@
     "repo": "NathanNam/incident-commander-game",
     "description": "A retro arcade game about being on call: steer the commander, resolve every alert, and don't run into your own trail.",
     "shot": "og"
+  },
+  {
+    "key": "techterminal",
+    "name": "Tech Terminal",
+    "tag": "Markets · Live data",
+    "url": "https://techterminal.vercel.app",
+    "repo": "NathanNam/tech-stock-tracker",
+    "description": "Big tech stocks on a trading-terminal board: live quotes, sparklines and 1D–1Y charts, with a command line and function keys."
   }
 ]
