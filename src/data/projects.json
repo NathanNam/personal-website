@@ -38,5 +38,14 @@
     "url": "https://boardgameweek.vercel.app",
     "repo": "NathanNam/boardgameweek",
     "description": "One board game a week, tied to the news: a family game, a solo pick, how to learn it, and talking points for the table."
+  },
+  {
+    "key": "incidentcommander",
+    "name": "Incident Commander",
+    "tag": "Arcade · Go + WebAssembly",
+    "url": "https://incident-commander-game.vercel.app",
+    "repo": "NathanNam/incident-commander-game",
+    "description": "A retro arcade game about being on call: steer the commander, resolve every alert, and don't run into your own trail.",
+    "shot": "og"
   }
 ]
