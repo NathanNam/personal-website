@@ -2,7 +2,7 @@
 
 My personal website: a short profile and the side projects I build and keep running.
 
-**Live:** https://nathannam.com
+**Live:** https://www.nathannam.com
 
 ## How it works
 

@@ -73,7 +73,7 @@ function ogHtml() {
   <div class="role">Principal Product Manager, Archetype AI</div></div></div>
   <div class="rule"></div><div class="k">Side projects</div>
   <div class="row">${thumbs}</div>
-  <div class="url">${new URL(SITE_URL).host}</div>
+  <div class="url">${new URL(SITE_URL).host.replace(/^www\./, '')}</div>
   </body></html>`;
 }
 
