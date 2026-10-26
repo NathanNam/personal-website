@@ -89,7 +89,7 @@ const links = [
           projects.map((p) => (
             <article class="p">
               <a href={p.url} tabindex="-1" aria-hidden="true">
-                <img src={`/projects/${p.key}.jpg`} width="768" height="480" alt="" loading="lazy" decoding="async" />
+                <img src={`/projects/${p.key}.jpg`} width="768" height="403" alt="" loading="lazy" decoding="async" />
               </a>
               <div>
                 <div class="t">{p.tag}</div>
@@ -137,7 +137,7 @@ const links = [
     border-top: 1px solid var(--ink); padding-top: 14px; margin: 72px 0 8px;
   }
   .p { display: grid; grid-template-columns: 240px 1fr; gap: 28px; padding: 28px 0; border-bottom: 1px solid var(--rule); align-items: start; }
-  .p img { width: 100%; height: auto; aspect-ratio: 16 / 10; border-radius: 6px; border: 1px solid var(--rule); display: block; }
+  .p img { width: 100%; height: auto; aspect-ratio: 1200 / 630; border-radius: 6px; border: 1px solid var(--rule); display: block; }
   .p h3 { font: 500 28px/1.15 Newsreader, Georgia, serif; margin: 0 0 6px; }
   .p h3 a { color: var(--ink); text-decoration: none; }
   .p h3 a:hover { color: var(--acc); }

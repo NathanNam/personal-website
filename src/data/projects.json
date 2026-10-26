@@ -45,8 +45,7 @@
     "tag": "Arcade · Go + WebAssembly",
     "url": "https://incident-commander-game.vercel.app",
     "repo": "NathanNam/incident-commander-game",
-    "description": "A retro arcade game about being on call: steer the commander, resolve every alert, and don't run into your own trail.",
-    "shot": "og"
+    "description": "A retro arcade game about being on call: steer the commander, resolve every alert, and don't run into your own trail."
   },
   {
     "key": "techterminal",
@@ -62,7 +61,6 @@
     "tag": "Basketball · Hand-checked",
     "url": "https://aau-basketball-tryouts.vercel.app",
     "repo": "NathanNam/aau-basketball-tryouts",
-    "description": "High school AAU basketball tryouts around the Bay Area in one place, checked by hand every week during tryout season.",
-    "shot": "og"
+    "description": "High school AAU basketball tryouts around the Bay Area in one place, checked by hand every week during tryout season."
   }
 ]

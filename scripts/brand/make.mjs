@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// Generates the project screenshots, the favicon set and the 1200×630 share image.
+// Generates the project cards, the favicon set and the 1200×630 share image.
 //
 //   npm i --no-save puppeteer-core@23.11.1
 //   node scripts/brand/make.mjs            # everything
-//   node scripts/brand/make.mjs --shots    # only the project screenshots
+//   node scripts/brand/make.mjs --shots    # only the project cards (each site's share image)
 //   node scripts/brand/make.mjs --brand    # only the icons and share image
 //
 // Needs Google Chrome at CHROME_PATH (default: the macOS app path).
@@ -66,7 +66,7 @@ function ogHtml() {
   .rule{position:absolute;left:72px;right:72px;top:300px;border-top:2px solid ${C.ink}}
   .k{position:absolute;left:72px;top:318px;font-weight:600;font-size:18px;letter-spacing:.14em;text-transform:uppercase;color:${C.mute}}
   .row{position:absolute;left:72px;right:72px;top:362px;display:grid;grid-template-columns:repeat(${projects.length},1fr);gap:14px}
-  .row img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:6px;border:1px solid ${C.rule}}
+  .row img{width:100%;aspect-ratio:1200/630;object-fit:cover;border-radius:6px;border:1px solid ${C.rule}}
   .url{position:absolute;left:72px;bottom:52px;font-size:24px;color:${C.acc};font-weight:600}
   </style></head><body>
   <div class="top"><img class="ph" src="data:image/jpeg;base64,${photo}"><div><h1>Nathan Nam</h1>
@@ -80,20 +80,15 @@ function ogHtml() {
 const browser = await puppeteer.launch({ executablePath: chrome, headless: true });
 try {
   if (only !== 'brand') {
-    // Each project's home page at 1280×800, saved at 768×480 (sharp at 2× in the 240 px column).
+    // Each card is the project's own share image (its 1200×630 poster), read from the
+    // live site's og:image, so the site and LinkedIn/X previews always match.
     fs.mkdirSync(path.join(pub, 'projects'), { recursive: true });
     for (const p of projects) {
       const page = await browser.newPage();
-      await page.setViewport({ width: 1280, height: 800, deviceScaleFactor: 0.6 });
-      if (p.shot === 'og') {
-        // Narrow pages (like a game cabinet) read better as their own share image.
-        const og = await (await browser.newPage()).goto(p.url).then((r) => r.text()).then((h) => h.match(/property="og:image" content="([^"]+)"/)[1]);
-        // Fit the whole image (no cropped text) over a blurred copy of itself.
-        await page.setContent(`<style>*{margin:0}body{width:1280px;height:800px;overflow:hidden;position:relative}.bg{position:absolute;inset:-40px;width:1360px;height:880px;object-fit:cover;filter:blur(28px) brightness(.9)}.fg{position:absolute;inset:0;width:1280px;height:800px;object-fit:contain}</style><img class=bg src="${og}"><img class=fg src="${og}">`, { waitUntil: 'networkidle0' });
-      } else {
-        await page.goto(p.url, { waitUntil: 'networkidle2', timeout: 60000 });
-        await new Promise((r) => setTimeout(r, 2500));
-      }
+      await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 0.64 });
+      const html = await (await fetch(p.url)).text();
+      const og = new URL(html.match(/property="og:image" content="([^"]+)"/)[1], p.url).href;
+      await page.setContent(`<style>*{margin:0}img{display:block;width:1200px;height:630px}</style><img src="${og}">`, { waitUntil: 'networkidle0' });
       await page.screenshot({ path: path.join(pub, 'projects', `${p.key}.jpg`), type: 'jpeg', quality: 82 });
       await page.close();
       console.log(`wrote public/projects/${p.key}.jpg`);
