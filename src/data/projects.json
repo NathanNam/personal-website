@@ -48,6 +48,14 @@
     "description": "One board game a week, tied to the news: a family game, a solo pick, how to learn it, and talking points for the table."
   },
   {
+    "key": "heartstrip",
+    "name": "Heartstrip",
+    "tag": "Health · Live sensor",
+    "url": "https://heartstrip.vercel.app",
+    "repo": "NathanNam/heartstrip",
+    "description": "Live heart rate variability from a Bluetooth sensor, printed like an ECG strip: glitches removed, stress read against your own baseline, and a second opinion from Newton by Archetype AI."
+  },
+  {
     "key": "incidentcommander",
     "name": "Incident Commander",
     "tag": "Arcade · Go + WebAssembly",
