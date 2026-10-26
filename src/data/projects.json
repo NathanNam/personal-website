@@ -24,6 +24,14 @@
     "description": "Your next Caltrain at a glance: live departures, the whole line as an 1830-style hex board, and the full timetable."
   },
   {
+    "key": "pickmeup",
+    "name": "Pick Me Up",
+    "tag": "School run · Live traffic",
+    "url": "https://pickmeup-sf.vercel.app",
+    "repo": "NathanNam/pick-me-up",
+    "description": "When to leave for school drop-off and pick-up in San Francisco, planned for a bad-traffic day, with the games, concerts and street closures on your route."
+  },
+  {
     "key": "starters",
     "name": "Probable Starters",
     "tag": "Baseball · Daily",
